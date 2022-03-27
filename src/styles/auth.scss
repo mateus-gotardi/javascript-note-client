@@ -1,0 +1,36 @@
+@import "./custom_colors";
+.authGeneral{
+    height: 100%;
+    width: 100%;
+    background-color: $custom-purple;
+    margin: 0;
+}
+
+#auth{
+ padding-top: 0px;
+}
+
+#buttons{
+    margin-left: 15%;
+
+}
+#login{
+    margin-right: 10%;
+}
+
+#formcontent{
+    margin-top: 0;
+}
+#sec{
+    padding: 8px;
+}
+#errormessage{
+    margin-top: 8px;
+    margin-bottom: 10px;
+    color: red;
+    span{
+        text-align: center;
+        margin-left:5%;
+        margin-right: auto;
+    }
+}

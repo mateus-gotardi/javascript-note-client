@@ -1,0 +1,45 @@
+@import "./custom_colors";
+
+.notesGeneral{
+    height: 100%;
+    width: 100%;
+    background-color: $custom-grey;
+    margin: 0;
+}
+.bm-menu {
+    background: $custom-grey;
+    padding-top: 10px;
+    border-right: 1px solid black;;
+   }
+
+   .bm-menu-wrap {
+    position: fixed;
+    height: 100%;
+  }
+  
+
+  /* Wrapper for item list */
+  .bm-item-list {
+    color: #b8b7ad;
+    padding: 0.8em;
+  }
+  
+  /* Individual item */
+  .bm-item {
+    display: inline-block;
+    margin-left: 15px;
+    color: $custom-purple-darker;
+    margin-bottom: 10px;
+    text-align: left;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .bm-item:hover {
+    color: $custom-purple-light;
+  }
+  
+  /* Styling of overlay */
+  .bm-overlay {
+    background: rgba(0, 0, 0, 0.3);
+  }

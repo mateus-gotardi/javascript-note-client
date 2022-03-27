@@ -1,0 +1,74 @@
+@import "./custom_colors";
+
+.notesindex{
+    margin-left: 15px;
+}
+
+.numberofnotes{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px ;
+    width: 100%;
+    h1{
+        color:$custom-purple-darker;
+    };
+    .tag{
+        background-color: $custom-grey;
+        border: 1px solid $custom-purple-darker;
+        cursor: pointer;
+        color: $custom-purple
+    };
+    .tag:hover{
+        background-color: $custom-purple;
+        color: $custom-grey;
+    }
+}
+
+#active{
+    background-color: $custom-purple;
+    h2{
+        color:$custom-grey;
+    }
+    .tag:not(body){
+        background-color: $custom-grey;
+        color:  $custom-purple-darker
+    }
+    .deleteIcon{
+        color: $custom-grey;
+    }
+    .deleteIcon:hover{
+        color: red;
+    }
+}
+.foot{
+    display: flex;
+    width: 100%;
+    height: 20px;
+    justify-content: space-between;
+}
+
+.deleteIcon{
+    margin-top: 15px;
+    margin-right: -15px;
+    cursor: pointer;
+}
+
+.deleteIcon:hover{
+    color: red;
+}
+
+.tag:not(body){
+    background-color: $custom-purple;
+    color:  $custom-grey
+}
+
+.notes-list{
+    padding-bottom: 90px;
+}
+
+li{
+    margin-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    margin-bottom: 0px;
+}

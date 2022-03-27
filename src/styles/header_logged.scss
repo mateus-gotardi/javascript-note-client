@@ -1,0 +1,49 @@
+@import "./custom_colors";
+
+nav.navbar {
+    height: 70px;
+    border-bottom: 1px solid black;
+    margin-bottom: 0px;
+    .navbar-brand {
+      height: 100%;
+
+      svg{
+        height: 100%;
+        margin-top:0px;
+        margin-left: 10px;
+        color: $custom-grey;
+        cursor: pointer;
+      };
+       img {
+         height: 45px;
+         margin-top:10px;
+      }
+  }
+}
+
+.burg-icon:hover{
+  filter: drop-shadow(0px 0px 4px rgb(255, 255, 255 / 0.4 ));
+}
+
+
+#nav-links{
+  color: $custom-grey;
+  margin-top: 10px;
+}
+.navbar-brand{
+  height:10px;
+}
+.externaldiv{
+  margin: 0px;
+  
+}
+#logged{
+    background-color: $custom-purple;
+}
+#navbar-menu-logged{
+  background-color: $custom-purple;
+}
+#logout{
+  color: $custom-purple-darker;
+  background-color: $custom-grey;
+}

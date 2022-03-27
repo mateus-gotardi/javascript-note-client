@@ -1,0 +1,20 @@
+@import "./custom_colors";
+
+.homeGeneral{
+    height: 100%;
+    width: 100%;
+    background-color: $custom-purple;
+    margin: 0;
+}
+
+.home{
+margin-top: 10px;
+}
+
+.columns{
+    margin-top: 5px;
+    margin-left: 60px;
+    margin-right: 60px;
+    position: relative;
+    top: 50px
+}
