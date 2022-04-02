@@ -47,3 +47,23 @@ nav.navbar {
   color: $custom-purple-darker;
   background-color: $custom-grey;
 }
+.dd{
+  display:flex;
+  justify-content: space-between ;
+  margin-right: -30px;
+  color: $custom-purple;
+}
+#dd{
+  width: 200px;
+}
+
+.iconRight{
+  color: $custom-grey;  
+  width: 25px;
+  height: 25px;
+}
+#dropArea:hover{
+  .iconRight{
+  color: $custom-purple;
+}
+}

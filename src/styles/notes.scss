@@ -43,3 +43,22 @@
   .bm-overlay {
     background: rgba(0, 0, 0, 0.3);
   }
+
+  .notes-editor{
+    padding: 0;
+    height: calc(100%-43px);
+  }
+
+  .searchinput{
+    display: flex;
+    .cross{
+       z-index: 1000;
+       margin-left: -25px;
+       margin-top: 10px;
+    }
+
+  }  
+  .cross:hover{
+     color: $custom-purple-light;
+     cursor: pointer;
+   }

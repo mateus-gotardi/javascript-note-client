@@ -1,0 +1,16 @@
+@import "./custom_colors";
+
+.editGeneral{
+    margin: 0;
+    background-color:$custom-grey ;
+    height: 100%;
+    width: 100%;
+}
+.changePassword{
+    margin-bottom: 12px;
+    color: $custom-purple;
+    cursor: pointer;
+}
+#successmessage{
+    color: $custom-purple-darker;
+}
