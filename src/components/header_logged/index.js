@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import 'bulma/css/bulma.min.css';
 import logoImage from '../../assets/images/logo-white.png';
-import '../../styles/header_logged.scss'
+import '../../styles/logged_header.scss'
 import { Link, Navigate } from 'react-router-dom';
 import UserService from '../../services/users';
 import { FaList } from "react-icons/fa";
 import { IoClose } from 'react-icons/io5'
 import { HiLogout } from 'react-icons/hi'
 import { CgProfile } from 'react-icons/cg'
-import { BiError } from 'react-icons/bi'
 
 function HeaderLogged(props) {
+    const user=JSON.parse(localStorage.getItem('user'));
     const [isNotes, setIsNotes] = useState(props.isOpen != null)
     const [isLogged, setLogged] = useState(localStorage.getItem('user'))
     const [isActive, setActive] = useState(false);
@@ -57,26 +57,41 @@ function HeaderLogged(props) {
                     </div>
 
                     <div className="navbar-end">
-                        <div className="navbar-item has-dropdown is-hoverable" id='dropArea'>
-                            <a className="navbar-link">
-                                <CgProfile className='iconRight' />
-                            </a>
-
-                            <div className="navbar-dropdown is-right" id='dd'>
-                                {isNotes ? 
-                                <Link to={'/users/edit'} className="navbar-item dd">
-                                    <CgProfile className='iconDD' />Edit User
-                                </Link> : 
-                                <Link to={'/notes'} className="navbar-item dd">
-                                    <FaList className='iconDD' />Notes
-                                </Link>
+                        {isActive ?
+                            <div className="navbar-item burg-container" >
+                                {isNotes ?
+                                    <Link to={'/users/edit'} className="navbar-item burg-item">
+                                        <CgProfile className='icon-burg' />Edit User
+                                    </Link> :
+                                    <Link to={'/notes'} className="navbar-item burg-item">
+                                        <FaList className='icon-burg' />Notes
+                                    </Link>
                                 }
-                                <hr className="navbar-divider" />
-                                <a className="navbar-item dd" onClick={handleLogout}>
-                                    <HiLogout className='iconDD' />Logout
+                                <a className="navbar-item burg-item" onClick={handleLogout}>
+                                    <HiLogout className='icon' />Logout
                                 </a>
                             </div>
-                        </div>
+                            :
+                            <div className="navbar-item has-dropdown is-hoverable" id='dropArea'>
+                                <a className="navbar-link">
+                                    <CgProfile className='iconRight' />
+                                </a>
+
+                                <div className="navbar-dropdown is-right" id='dd'>
+                                    {isNotes ?
+                                        <Link to={'/users/edit'} className="navbar-item dd">
+                                            <CgProfile className='iconDD' />{user.name}
+                                        </Link> :
+                                        <Link to={'/notes'} className="navbar-item dd">
+                                            <FaList className='iconDD' />Notes
+                                        </Link>
+                                    }
+                                    <hr className="navbar-divider" />
+                                    <a className="navbar-item dd" onClick={handleLogout}>
+                                        <HiLogout className='iconDD' />Logout
+                                    </a>
+                                </div>
+                            </div>}
                     </div>
                 </div>
             </nav >

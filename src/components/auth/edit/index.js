@@ -1,49 +1,68 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Navigate, Link } from "react-router-dom"
 import UserService from "../../../services/users";
 import '../../../styles/user.scss'
+import UsersDelete from "./delete";
+import { Navigate } from "react-router-dom";
 
 
 const EditUser = () => {
+    var user = JSON.parse(localStorage.getItem('user'));
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState(null);
-    const [newPassword, setNewPassword] = useState('')
+    const [password, setpassword] = useState('')
+    const [newPassword1, setNewPassword1] = useState('')
+    const [newPassword2, setNewPassword2] = useState('')
     const [showNP, setShowNP] = useState(false)
-    const [status, setStatus]= useState(false)
+    const [status, setStatus] = useState('')
+
 
     const initializeUser = async () => {
-        const user = await JSON.parse(localStorage.getItem('user'));
         setName(user['name']);
         setEmail(user['email']);
         return (user)
     }
 
-    useEffect(()=>{
-        setStatus(false)
-    },[name,email,newPassword])
+    useEffect(() => {
+        setStatus('false')
+    }, [name, email, newPassword1, password])
+
     useEffect(() => {
         initializeUser()
     }, [])
+
+
+    const deleteUser = async () => {
+        if (window.confirm('Are you sure you wish to delete this account?')) {
+            await UserService.delete(password)
+            return (<Navigate to="/" />)
+        }
+    }
 
     const handleSubmit = async (evt) => {
         evt.preventDefault()
         if (!showNP) {
             try {
-                await UserService.edit({ name: name, email: email, password: password })
-                setStatus(true)
+                await UserService.edit({ name: name, email: email, currentPassword: password, id: user._id })
+                setStatus('success')
             } catch (error) {
-                setError(true)
+                console.log(error)
+                setStatus('error')
             }
         } else {
-            try {
-                await UserService.edit({ name: name, email: email, password: password })
-                await UserService.password({password:password, newPassword:newPassword, email:email})
-                setStatus(true)
-            } catch (error) {
-                setError(true)
+            if (newPassword1 === newPassword2) {
+                try {
+                    await UserService.edit({ name: name, email: email, currentPassword: password, id: user._id })
+                    await UserService.updatePassword({
+                        currentPassword: password, newPassword: newPassword1, id: user._id
+                    })
+
+                } catch (error) {
+                    setStatus('error')
+                }
+            } else {
+                setStatus('error2')
             }
+
         }
     }
 
@@ -82,32 +101,49 @@ const EditUser = () => {
                             type="password"
                             required
                             name="newPassword"
-                            value={newPassword}
-                            onChange={e => setNewPassword(e.target.value)}
+                            value={newPassword1}
+                            onChange={e => setNewPassword1(e.target.value)}
                         />
+                    </div>
+                    <div className="field">
+                        <label className="label is-small">Confirm New Password:</label>
+                        <div className="control">
+                            <input className="input"
+                                type="password"
+                                required
+                                name="password"
+                                value={newPassword2}
+                                onChange={e => setNewPassword2(e.target.value)}
+                            />
+                        </div>
+                        {status == 'error2' && <div id="errormessage"><span class="is-size-6" >Passwords don't match</span></div>}
                     </div>
                 </div>}
-                <div className="field">
-                    <label className="label is-small">Confirm Password:</label>
-                    <div className="control">
-                        <input className="input"
 
-                            type="password"
-                            required
-                            name="password"
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}
-                        />
-                    </div>
-                </div>
+
                 <div className="field">
-                    {error && <div id="errormessage"><span class="is-size-6" >Password invalid</span></div>}
-                    {status && <div id="successmessage"><span class="is-size-6" >Success</span></div>}
-                    <div className="changePassword"><span onClick={e => setShowNP(true)}>Change Password</span></div>
-                    <div className="control" id='buttons'>
-                        <Link to='/login' className="button is-danger" id="login">Delete Account</Link>
-                        <button className='button is-custom-purple' type="submit">Save</button>
+
+                    <div className="changePassword">
+
+                        <div className='inter'>
+                            <label className='label is-small'>Current Password:</label>
+                            <input required type='password' className='input' name='password' value={password}
+                                onChange={e => { setpassword(e.target.value) }} />
+                        </div>
+                        <span onClick={e => {
+                            if (showNP) { setShowNP(false) }
+                            else { setShowNP(true) }
+                        }}>
+                            Change Password
+                        </span>
                     </div>
+                    {status == 'error' && <div id="errormessage"><span className="is-size-6" >Password invalid</span></div>}
+                    {status == 'success' && <div id="successmessage"><span className="is-size-6" >Success</span></div>}
+
+                </div>
+                <div className="deletesave">
+                        <button className='button is-custom-purple' type="submit">Save</button>
+                        <UsersDelete password={password}/>
                 </div>
             </form>
         </Fragment>

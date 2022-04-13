@@ -17,7 +17,7 @@ function Header(){
             <Link className="navbar-item" to="/">
             <img src={logoImage} width="112" height="28" alt='logo'/>
             </Link>
-            <a onClick={handleToggle} role="button" className={isActive ? "navbar-burger is-active":"navbar-burger"} aria-label="menu" aria-expanded="false" id='nav-links'>
+            <a onClick={handleToggle} role="button" className={isActive ? "navbar-burger is-active":"navbar-burger burgicon"} aria-label="menu" aria-expanded="false" id='nav-links'>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>

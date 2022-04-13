@@ -14,3 +14,13 @@
 #successmessage{
     color: $custom-purple-darker;
 }
+.buttos{
+    display: flex;
+    justify-content: space-between;
+    align-items:center ;
+}
+.deletesave{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

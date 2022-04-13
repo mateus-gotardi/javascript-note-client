@@ -54,7 +54,7 @@ const LoginForm = () => {
                     </div>
                 </div>
                 <div className="field">
-                    {error && <div id="errormessage"><span class="is-size-6" >Email or Password invalid</span></div>}
+                    {error && <div id="errormessage"><span className="is-size-6" >Email or Password invalid</span></div>}
                     <div className="control" id='buttons'>
                         <button type="submit" className="button is-custom-purple" id="login">Login</button>
                         <button onClick={e=>{ setRedirectToRegister(true)}} className='button is-white has-text-custom-purple'>Register</button>

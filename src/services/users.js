@@ -14,15 +14,20 @@ const UserService = {
         const response = await Api.put(`/users/edit`, params, {
             headers: { 'x-access-token': localStorage.getItem('token') }
         })
-        localStorage.setItem('user', JSON.stringify(response.data))
+        let resp = response.data
+        if (!resp.error) {
+            localStorage.setItem('user', JSON.stringify(resp.user))
+        } else {
+            console.log(resp)
+        }
     },
     updatePassword: async (params) => {
         await Api.put("/users/password", params, {
             headers: { 'x-access-token': localStorage.getItem('token') }
         })
     },
-    delete: async () => {
-        await Api.delete("/users", {
+    delete: async (params) => {
+        await Api.delete("/users/", params, {
             headers: { 'x-access-token': localStorage.getItem('token') }
         })
         localStorage.removeItem('user', null);
