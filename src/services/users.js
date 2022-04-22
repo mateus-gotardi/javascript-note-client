@@ -1,4 +1,5 @@
 import Api from "./api";
+
 const UserService = {
     register: (params) => Api.post('/users/register', params),
     login: async (params) => {
@@ -26,12 +27,17 @@ const UserService = {
             headers: { 'x-access-token': localStorage.getItem('token') }
         })
     },
-    delete: async (params) => {
-        await Api.delete("/users/", params, {
+    delete: async () => {
+        await Api.delete("/users/", {
             headers: { 'x-access-token': localStorage.getItem('token') }
         })
         localStorage.removeItem('user', null);
         localStorage.removeItem('token', null);
+        localStorage.removeItem('status', null);
+    },
+    checkPassword: async (params) => {
+        const response = await Api.post('/users/checkpassword', params)
+        localStorage.setItem('status', JSON.stringify(response.data.status))
     }
 }
 

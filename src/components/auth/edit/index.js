@@ -31,12 +31,6 @@ const EditUser = () => {
     }, [])
 
 
-    const deleteUser = async () => {
-        if (window.confirm('Are you sure you wish to delete this account?')) {
-            await UserService.delete(password)
-            return (<Navigate to="/" />)
-        }
-    }
 
     const handleSubmit = async (evt) => {
         evt.preventDefault()
@@ -143,7 +137,7 @@ const EditUser = () => {
                 </div>
                 <div className="deletesave">
                         <button className='button is-custom-purple' type="submit">Save</button>
-                        <UsersDelete password={password}/>
+                        <UsersDelete password={password} email={email}/>
                 </div>
             </form>
         </Fragment>
